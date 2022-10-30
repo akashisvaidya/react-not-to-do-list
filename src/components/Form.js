@@ -4,7 +4,7 @@ export const Form = ({ addTask }) => {
   const [form, setForm] = useState({ type: "entry" });
   const handleOnChange = (e) => {
     const { value, name } = e.target;
-    console.log(value, name);
+    // console.log(value, name);
     setForm({
       ...form, //spread
       [name]: value,
@@ -14,11 +14,11 @@ export const Form = ({ addTask }) => {
   const handleOnSubmit = (e) => {
     e.preventDefault();
     const _id = randomStr();
-    console.log(_id);
+    // console.log(_id);
     // console.log(e);
     addTask({ ...form, _id });
   };
-  console.log(form);
+  // console.log(form);
   return (
     <div>
       <form onSubmit={handleOnSubmit}>

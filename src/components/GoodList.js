@@ -1,7 +1,12 @@
 import React from "react";
 
-export const GoodList = ({ taskListPropDrillDown, switchTaskPropDd }) => {
-  console.log(taskListPropDrillDown);
+export const GoodList = ({
+  taskListPropDrillDown,
+  switchTaskPropDd,
+  handleOnSelect,
+  itemToDelete,
+}) => {
+  // console.log(taskListPropDrillDown);
   return (
     <div>
       <div className="col-md">
@@ -10,21 +15,24 @@ export const GoodList = ({ taskListPropDrillDown, switchTaskPropDd }) => {
         <table className="table table-striped table-hover">
           <tbody id="task-list">
             {taskListPropDrillDown.map((item, i) => {
-              console.log(item, i);
+              // console.log(item, i);
               return (
                 <tr>
-                  <th scope="row">{i + 1}</th>
+                  <td>
+                    <input
+                      className="form-check-input"
+                      type="checkbox"
+                      value={item._id}
+                      onChange={handleOnSelect} // higher order function so the empty
+                      //function is executed first and the second fucntion is carried away
+                      checked={itemToDelete.includes(item._id)}
+                    ></input>
+                  </td>
                   <td>{item.task}</td>
                   <td>{item.hr}</td>
                   <td className="text-end">
                     <button
-                      onclick="deleteTask({i})"
-                      className="btn btn-danger"
-                    >
-                      <i className="fa-solid fa-trash-can"></i>
-                    </button>
-                    <button
-                      onClick={() => switchTaskPropDd(item._id)}
+                      onClick={() => switchTaskPropDd(item._id, "bad")}
                       className="btn btn-success"
                     >
                       <i className="fa-solid fa-right-long"></i>

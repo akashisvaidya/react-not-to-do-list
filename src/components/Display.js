@@ -2,8 +2,13 @@ import React from "react";
 import { Badlist } from "./Badlist";
 import { GoodList } from "./GoodList";
 
-export const Display = ({ taskListProp, switchTaskProps }) => {
-  console.log(taskListProp);
+export const Display = ({
+  taskListProp,
+  switchTaskProps,
+  handleOnSelect,
+  itemToDelete,
+}) => {
+  // console.log(taskListProp);
 
   const entryList = taskListProp.filter((item) => item.type === "entry");
 
@@ -15,8 +20,15 @@ export const Display = ({ taskListProp, switchTaskProps }) => {
         <GoodList
           taskListPropDrillDown={entryList}
           switchTaskPropDd={switchTaskProps}
+          handleOnSelect={handleOnSelect}
+          itemToDelete={itemToDelete}
         />
-        <Badlist badListProp={badList} />
+        <Badlist
+          badListProp={badList}
+          handleOnSelect={handleOnSelect}
+          itemToDelete={itemToDelete}
+          switchTaskPropDd={switchTaskProps}
+        />
       </div>
     </div>
   );

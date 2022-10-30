@@ -1,6 +1,11 @@
 import React from "react";
 
-export const Badlist = ({ badListProp }) => {
+export const Badlist = ({
+  badListProp,
+  handleOnSelect,
+  itemToDelete,
+  switchTaskPropDd,
+}) => {
   return (
     <div>
       <div className="col-md">
@@ -11,18 +16,23 @@ export const Badlist = ({ badListProp }) => {
             {badListProp.map((item, i) => {
               return (
                 <tr>
-                  <th scope="row">{i + 1}</th>
+                  <td>
+                    <input
+                      className="form-check-input"
+                      type="checkbox"
+                      value={item._id}
+                      onChange={handleOnSelect} // higher order function so the empty function is executed first and the second fucntion is carried away
+                      checked={itemToDelete.includes(item._id)}
+                    ></input>
+                  </td>
                   <td>{item.task}</td>
                   <td>{item.hr}</td>
                   <td class="text-end">
-                    <button onclick="deleteTask(${i})" class="btn btn-danger">
-                      <i class="fa-solid fa-trash-can"></i>
-                    </button>
                     <button
-                      onclick="markAsNotToDo(${i})"
-                      class="btn btn-success"
+                      onClick={() => switchTaskPropDd(item._id, "entry")}
+                      class="btn btn-warning"
                     >
-                      <i class="fa-solid fa-right-long"></i>
+                      <i class="fa-solid fa-left-long"></i>
                     </button>
                   </td>
                 </tr>
@@ -31,7 +41,11 @@ export const Badlist = ({ badListProp }) => {
           </tbody>
         </table>
         <div className="text-end fw-bold">
-          You Could have saved = <span id="totalBadHr"> 0 </span>
+          You Could have saved ={" "}
+          <span id="totalBadHr">
+            {badListProp.reduce((acc, item) => acc + +item.hr, 0)}{" "}
+          </span>
+          hrs
         </div>
       </div>
     </div>
