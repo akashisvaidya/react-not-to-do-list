@@ -15,7 +15,7 @@ export const Badlist = ({
           <tbody id="bad-task">
             {badListProp.map((item, i) => {
               return (
-                <tr>
+                <tr key={item._id}>
                   <td>
                     <input
                       className="form-check-input"
@@ -27,12 +27,12 @@ export const Badlist = ({
                   </td>
                   <td>{item.task}</td>
                   <td>{item.hr}</td>
-                  <td class="text-end">
+                  <td className="text-end">
                     <button
                       onClick={() => switchTaskPropDd(item._id, "entry")}
-                      class="btn btn-warning"
+                      className="btn btn-warning"
                     >
-                      <i class="fa-solid fa-left-long"></i>
+                      <i className="fa-solid fa-left-long"></i>
                     </button>
                   </td>
                 </tr>

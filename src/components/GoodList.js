@@ -14,10 +14,10 @@ export const GoodList = ({
         <hr />
         <table className="table table-striped table-hover">
           <tbody id="task-list">
-            {taskListPropDrillDown.map((item, i) => {
+            {taskListPropDrillDown.map((item) => {
               // console.log(item, i);
               return (
-                <tr>
+                <tr key={item._id}>
                   <td>
                     <input
                       className="form-check-input"
